@@ -1,10 +1,11 @@
+import os
 import pandas as pd
-#from gensim.utils import simple_preprocess as preprocess
 from gensim.models.doc2vec import Doc2Vec
 from janome.tokenizer import Tokenizer
 
 
 def resumate_model(heart):
+
     # CSVに基づいてデータフレームを作成
     scopes_dataframe = pd.read_csv('scopes_dataframe.csv')
 
