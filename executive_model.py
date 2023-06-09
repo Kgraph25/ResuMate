@@ -1,7 +1,7 @@
 import pandas as pd
-from gensim.utils import simple_preprocess as preprocess
+#from gensim.utils import simple_preprocess as preprocess
 from gensim.models.doc2vec import Doc2Vec
-import janome
+from janome.tokenizer import Tokenizer
 
 
 def resumate_model(heart):
@@ -23,9 +23,9 @@ def resumate_model(heart):
 
     # 形態素解析器をインスタンス化し解析
     test_txt = heart
-    word_list = mecab_by_wakati(test_txt)
+    word_list = janome_by_wakati(test_txt)
     # モデルで評価
-    similar_documents = model.docvecs.most_similar([model.infer_vector])
+    similar_documents = model.docvecs.most_similar([model.infer_vector(word_list)])
     # キーを抽出します。
     keys = [document[0] for document in similar_documents]
 
@@ -39,9 +39,13 @@ def resumate_model(heart):
 
 #        return key, names[key], visions[key]
 def janome_by_wakati(test_txt):
-    to = janome.
+    to = Tokenizer(wakati=True)
+    tokens = to.tokenize(test_txt)
+    return list(tokens)
+
 
 
 if __name__ == "__main__":
     text = input('例題')
     resumate_model(text)
+
