@@ -1,8 +1,8 @@
 import os
 from flask import Flask, render_template
-
-# Pandasをインポート
 import pandas as pd
+from gensim.utils import simple_preprocess as preprocess
+from gensim.models.doc2vec import Doc2Vec
 
 # CSVに基づいてデータフレームを作成
 scopes_dataframe = pd.read_csv('scopes_dataframe.csv')
@@ -17,10 +17,7 @@ for vision in scopes_dataframe['scopes']:
 
 # データフレームを出力
 print(scopes_dataframe)
-
-from gensim.utils import simple_preprocess as preprocess
-from gensim.models.doc2vec import Doc2Vec
-
+#モデル読み込み
 model = Doc2Vec.load('scope.model')
 # モデルを評価します。
 test_txt = input('prease_visions')
