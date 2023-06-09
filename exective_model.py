@@ -20,7 +20,7 @@ def resumate_model(text):
     # モデル読み込み
     model = Doc2Vec.load('scope.model')
     # モデルを評価します。
-    test_txt = input('prease_visions')
+    test_txt = text
     similar_documents = model.docvecs.most_similar([model.infer_vector(preprocess(test_txt))])
     # キーを抽出します。
     keys = [document[0] for document in similar_documents]
@@ -30,6 +30,6 @@ def resumate_model(text):
         # print(scopes_dataframe.loc[key])
         print(key, names[key], ":", visions[key])
 
-    if __name__ == '__main__':
-        text=input('例題')
+    if __name__ == "__main__":
+        text = input('例題')
         resumate_model(text)

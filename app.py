@@ -1,8 +1,6 @@
 import os
 
-import requests
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
 
 # pylint: disable=C0103
 app = Flask(__name__)
@@ -10,13 +8,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    if requests.method == "POST":
-        text = requests.form("heart")
+    if request.method == "POST":
+        text = request.form["heart"]
 
     """Return a friendly HTTP greeting."""
     message = 'Welcome! Resumate!!'
 
-    re
     return render_template('index.html',
 
                            message=message)
