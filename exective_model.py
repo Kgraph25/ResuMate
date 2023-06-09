@@ -30,6 +30,7 @@ def resumate_model(text):
         # print(scopes_dataframe.loc[key])
         print(key, names[key], ":", visions[key])
 
-    if __name__ == "__main__":
-        text = input('例題')
-        resumate_model(text)
+
+if __name__ == "__main__":
+    text = input('例題')
+    resumate_model(text)
