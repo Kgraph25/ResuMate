@@ -7,18 +7,15 @@ from executive_model import resumate_model as remo
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def hello():
     if request.method == "POST":
         text = request.form["heart"]
-
-        return render_template('index.html')
-    """Return a friendly HTTP greeting."""
-    message = 'Welcome! Resumate!!'
-
-    return render_template('index.html',
-
-                           message=message)
+        a, b, c = remo(text)
+        return render_template('index.html',key=a, name=b, vision=c)
+    else:
+        message = 'Welcome! Resumate!!'
+        return render_template('index.html',message=message)
 
 
 if __name__ == '__main__':

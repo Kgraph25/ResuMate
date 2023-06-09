@@ -28,7 +28,8 @@ def resumate_model(heart):
     # キーを表示します。
     for key in keys:
         # print(scopes_dataframe.loc[key])
-        print(key, names[key], ":", visions[key])
+        # print(key, names[key], ":", visions[key])
+        return key, names[key], visions[key]
 
 
 if __name__ == "__main__":
