@@ -1,7 +1,7 @@
 import pandas as pd
 from gensim.utils import simple_preprocess as preprocess
 from gensim.models.doc2vec import Doc2Vec
-import MeCab
+import janome
 
 
 def resumate_model(heart):
@@ -25,31 +25,21 @@ def resumate_model(heart):
     test_txt = heart
     word_list = mecab_by_wakati(test_txt)
     # モデルで評価
-    similar_documents = model.docvecs.most_similar([model.infer_vector(word_list)])
+    similar_documents = model.docvecs.most_similar([model.infer_vector])
     # キーを抽出します。
     keys = [document[0] for document in similar_documents]
 
     # キーを表示します。
-    return keys[0], names[keys[0]], visions[keys[0]]
+    # return keys[0], names[keys[0]], visions[keys[0]]
+
+    for key in keys:
+        # print(scopes_dataframe.loc[key])
+        print(key, names[key], ":", visions[key])
 
 
-#    for key in keys:
-#        # print(scopes_dataframe.loc[key])
-#        # print(key, names[key], ":", visions[key])
 #        return key, names[key], visions[key]
-def mecab_by_wakati(test_txt):
-    # インスタンス化
-    tagger = MeCab.Tagger('-Owakati')
-    tagger.parse('')
-    node = tagger.parseToNode(test_txt)
-    word_list = []
-    while node:
-        pos = node.feature.split(",")[0]
-        if pos in ["名詞", "動詞", "形容詞", "形容動詞"]:  # 対象とする品詞
-            word = node.surface
-            word_list.append(word)
-        node = node.next
-    return word_list
+def janome_by_wakati(test_txt):
+    to = janome.
 
 
 if __name__ == "__main__":
